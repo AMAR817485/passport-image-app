@@ -23,18 +23,18 @@ if uploaded_file:
     input_image = Image.open(uploaded_file)
 
     output_image = remove(input_image)
-
     output_image = output_image.convert("RGBA")
 
-alpha = output_image.split()[-1]
-alpha = alpha.point(lambda p: 255 if p > 200 else 0)
-
-output_image.putalpha(alpha)
+    alpha = output_image.split()[-1]
+    alpha = alpha.point(lambda p: 255 if p > 200 else 0)
+    output_image.putalpha(alpha)
 
     white_bg = Image.new(
-    "RGB",
-    output_image.size,
-    color_map[bg_color])
+        "RGB",
+        output_image.size,
+        color_map[bg_color]
+    )
+
     white_bg.paste(output_image, mask=output_image.split()[-1])
 
     st.image(white_bg, caption="Passport Photo", use_container_width=True)
