@@ -5,6 +5,18 @@ import io
 
 st.title("Passport Photo Maker")
 
+bg_color = st.selectbox(
+    "Select Background Color",
+    ["White", "Blue", "Red", "Light Gray"]
+)
+
+color_map = {
+    "White": (255, 255, 255),
+    "Blue": (0, 102, 204),
+    "Red": (255, 0, 0),
+    "Light Gray": (220, 220, 220)
+}
+
 uploaded_file = st.file_uploader("Photo upload karo", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
@@ -12,7 +24,11 @@ if uploaded_file:
 
     output_image = remove(input_image)
 
-    white_bg = Image.new("RGB", output_image.size, (255, 255, 255))
+    white_bg = Image.new(
+    "RGB",
+    output_image.size,
+    color_map[bg_color]
+)
     white_bg.paste(output_image, mask=output_image.split()[-1])
 
     st.image(white_bg, caption="Passport Photo", use_container_width=True)
