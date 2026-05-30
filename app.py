@@ -34,8 +34,7 @@ output_image.putalpha(alpha)
     white_bg = Image.new(
     "RGB",
     output_image.size,
-    color_map[bg_color]
-)
+    color_map[bg_color])
     white_bg.paste(output_image, mask=output_image.split()[-1])
 
     st.image(white_bg, caption="Passport Photo", use_container_width=True)
