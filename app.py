@@ -24,6 +24,13 @@ if uploaded_file:
 
     output_image = remove(input_image)
 
+    output_image = output_image.convert("RGBA")
+
+alpha = output_image.split()[-1]
+alpha = alpha.point(lambda p: 255 if p > 200 else 0)
+
+output_image.putalpha(alpha)
+
     white_bg = Image.new(
     "RGB",
     output_image.size,
