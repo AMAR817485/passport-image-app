@@ -2,3 +2,5 @@ streamlit
 rembg
 pillow
 onnxruntime
+opency-python-headless
+numpy
